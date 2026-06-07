@@ -1,0 +1,14 @@
+{
+  "name": "skin-in-the-game",
+  "owner": {
+    "name": "evanmcgoogan"
+  },
+  "description": "Give your AI agent an operating contract — twelve build principles, actively enforced.",
+  "plugins": [
+    {
+      "name": "skin-in-the-game",
+      "source": ".",
+      "description": "Agent governance: the anti-yes-man operating contract for your coding agent."
+    }
+  ]
+}
