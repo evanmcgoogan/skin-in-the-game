@@ -2,6 +2,8 @@
 # SessionStart hook for the "skin-in-the-game" plugin.
 # Reads (and ignores) the hook JSON on stdin and injects the operating
 # contract into the session so the methodology is present from turn one.
+# Fires on every SessionStart event (startup, resume, /clear, compact),
+# so the contract survives a cleared or compacted context window.
 # Pure bash — no jq or other dependencies, so it runs everywhere.
 
 cat <<'EOF'
