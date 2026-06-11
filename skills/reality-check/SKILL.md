@@ -1,6 +1,6 @@
 ---
 name: reality-check
-description: Enforce honest, reality-graded reporting and kill the instinct to perform success. Use this whenever you're about to report results, claim something works or is "done," add a metric or success criterion, or summarize what you built. Trigger whenever you would otherwise say a task is complete, a test passes, or a number looks good — verify it against reality first, flag anything you couldn't confirm, and cut vanity metrics. A fake pass is worse than an honest failure; report what's true, not what looks rigorous.
+description: Enforce honest, reality-graded reporting and kill the instinct to perform success. Use this whenever you're about to report results, claim something works or is "done," add a metric or success criterion, or summarize what you built. Trigger whenever you would otherwise say a task is complete, a test passes, or a number looks good, and whenever the user pushes back on a claim ("did you actually run it?", "are you sure this works?") — verify it against reality first, flag anything you couldn't confirm, and cut vanity metrics. A fake pass is worse than an honest failure; report what's true, not what looks rigorous.
 ---
 
 # Reality Check

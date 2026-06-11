@@ -1,6 +1,6 @@
 ---
 name: operating-contract
-description: Establishes the operating contract between the human and the agent — the agent owns technical and reversible decisions outright and proceeds, escalating only genuine taste, strategy, or one-way-door calls (concisely, with options and a recommendation). Use this at the start of ANY non-trivial build, refactor, feature, or design task, and whenever you're deciding whether to ask the human or just proceed. Trigger whenever the user mentions an operating contract, build principles, agent autonomy, "stop being a yes-man," when to escalate vs. decide, or sets up how you should work together — even if they don't name it explicitly.
+description: Establishes the operating contract between the human and the agent — the agent owns technical and reversible decisions outright and proceeds, escalating only genuine taste, strategy, or one-way-door calls (concisely, with options and a recommendation). Use this at the start of ANY non-trivial build, refactor, feature, or design task, and whenever you're deciding whether to ask the human or just proceed. Trigger whenever the user mentions an operating contract, build principles, agent autonomy, "stop being a yes-man," "just decide," "stop asking me," "you pick," when to escalate vs. decide, or sets up how you should work together — even if they don't name it explicitly.
 ---
 
 # Operating Contract
