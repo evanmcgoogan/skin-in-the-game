@@ -21,6 +21,27 @@ Your coding agent has two failure modes, and you've hit both:
 
 The fix isn't a cleverer prompt. It's a **contract** — an explicit division of labor that tells the agent what to own and what to bring to you.
 
+## Before / after
+
+**Without a contract:**
+
+> **You:** Add caching to the API.
+>
+> **Agent:** Great idea! Adding Redis now. *…and it ships a cache, a per-route config layer, and a warming cron. It never asked whether the data can go stale. You find out in production.*
+
+**With Skin in the Game:**
+
+> **You:** Add caching to the API.
+>
+> **Agent:** Owning the technical calls: in-process LRU keyed on tenant + query — we're on one box, so Redis is a dependency we don't need yet. Cutting the per-route config — flexibility with no second use case (#7, delete the requirement).
+>
+> One decision is genuinely yours, because **acceptable staleness** is a one-way door for what users see:
+> **(a) 60 seconds** — safe everywhere, dashboards lag a beat *(my recommendation)* · **(b) 5 minutes** — cheaper, but billing pages can show stale numbers.
+>
+> Everything else proceeds now. Constitution-check runs before I call it done.
+
+Same request. One question reaches you — the one that was actually yours.
+
 ## Install
 
 ```text
@@ -28,7 +49,7 @@ The fix isn't a cleverer prompt. It's a **contract** — an explicit division of
 /plugin install skin-in-the-game@skin-in-the-game
 ```
 
-That's it. The operating contract loads at the start of every session.
+Start a new session and the contract is in context from turn one. It re-loads after every `/clear` and compaction, so it never silently falls out.
 
 ## What you get
 
@@ -43,6 +64,18 @@ This isn't a `CLAUDE.md` you paste once and forget. It's a **methodology** — t
 | **reality-check** | #4 & #5 — kill fake passes, vanity metrics, and performed rigor |
 | **constitution-check** | the gate — self-review any plan or diff against all twelve |
 
+And before the agent calls any substantial build done, it grades its own diff:
+
+```text
+Constitution Check — cache layer, before calling it done
+✅ Honored:    P8 read the existing fetch path first · P9 reused the repo's LRU helper
+⚠️ Violations:
+   - P7 Delete: added a cache-bypass flag "for debugging" — nobody asked for it → cut
+   - P5 Honesty: about to report "tests pass" — the staleness path was never exercised
+     → run it, or report it unverified
+🚪 Escalate:   none — staleness was settled up front
+```
+
 ## How it works — the altitude line
 
 The whole system turns on one line:
@@ -53,16 +86,6 @@ The whole system turns on one line:
 - **Above the line** (taste, strategy, one-way doors) → it escalates as a *decision*: plain-English options, pros/cons, a recommendation. Never a status update.
 
 Because you're rate-limited by exactly one resource — your time and attention — and it should be spent only where it's irreplaceable.
-
-## Before / after
-
-**Without a contract:**
-> **You:** Add caching to the API.
-> **Agent:** Great idea! Adding a Redis cache now. *[builds it — never asks if the data's even cacheable, invents a config layer nobody needs]*
-
-**With Skin in the Game:**
-> **You:** Add caching to the API.
-> **Agent:** Two of these are one-way doors, so before I build — *[grill-me: invalidation strategy? acceptable staleness?]*. I'm dropping the per-route config (#7 — flexibility you don't need yet). Building the rest, then I'll run constitution-check before I call it done.
 
 ## The twelve
 

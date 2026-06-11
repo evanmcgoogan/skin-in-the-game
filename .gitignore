@@ -2,3 +2,6 @@
 *.log
 .env
 node_modules/
+
+# Local launch drafts — Evan's eyes only, never part of the public artifact
+launch/
